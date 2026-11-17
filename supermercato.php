@@ -1,5 +1,10 @@
 <?php
     # --- Funzioni ---
+    /*
+    chiave_presente
+    accetta una chiave da cercare e un array
+    restituisce un boolean
+    */
     function chiave_presente($key_to_find, $array) {
         foreach (array_keys($array) as $key) {
             if ($key == $key_to_find) {
@@ -9,6 +14,11 @@
         return false;
     }
 
+    /*
+    genera_report
+    accetta un array associativo contenente array associativi
+    restituisce un array associativo contenente array associativi
+    */
     function genera_report($vendite) {
         $report = [];
         foreach ($vendite as $transazione) {
@@ -24,6 +34,11 @@
         return $report;
     }
 
+    /*
+    calcola_importi_medi
+    accetta un array associativo contenente array associativi
+    restituisce un array associativo
+    */
     function calcola_importi_medi($report) {
         $importi_medi = [];
         foreach ($report as $categoria => $statistiche) {
@@ -33,6 +48,7 @@
     }
 
     # Parte 1
+    # Creazione array numerico
     $vendite = [
         ["categoria" => "Elettronica", "prodotto" => "TV 4K", "importo" => 750],
         ["categoria" => "Libri", "prodotto" => "PHP Avanzato", "importo" => 30],
@@ -42,11 +58,12 @@
     ];
 
     # Parte 2
+    # Elaborazione report
     $report = genera_report($vendite);
 
     # Parte 3
+    # Calcolo importo medio per categoria
     $importi_medi = calcola_importi_medi($report);
-
 ?>
 
 <!DOCTYPE html>
@@ -60,6 +77,7 @@
     <h1> Report Vendite Supermercato </h1>
 
     <!-- Parte 4 -->
+    <!-- Visualizzazione del Report in Table -->
     <table>
         <thead>
             <tr>
