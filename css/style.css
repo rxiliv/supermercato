@@ -1,0 +1,27 @@
+h1 {
+    color: blueviolet;
+    font-size: 32px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid blueviolet;
+}
+
+thead {
+    background-color: blueviolet;
+    color: whitesmoke;
+    font-size: 24px;
+}
+
+th {
+    padding: 8px;
+}
+
+td {
+    border: 2px solid blueviolet;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: violet;
+}
