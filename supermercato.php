@@ -47,6 +47,8 @@
         return $importi_medi;
     }
 
+
+
     # Parte 1
     # Creazione array numerico
     $vendite = [
@@ -82,20 +84,20 @@
     <table>
         <thead>
             <tr>
-                <th> Categoria </th>
-                <th> Totale Vendite </th>
-                <th> Numero Transazioni </th>
-                <th> Importo Medio Transazione </th>
+                <th> Categoria                  </th>
+                <th> Totale Vendite             </th>
+                <th> Numero Transazioni         </th>
+                <th> Importo Medio Transazione  </th>
             </tr>
         </thead>
 
         <tbody>
             <?php foreach($report as $categoria => $statistiche): ?>
             <tr>
-                <td> <?= $categoria; ?> </td>
-                <td> <?= $statistiche["totale_vendite"]; ?> </td>
+                <td> <?= $categoria;                        ?> </td>
+                <td> <?= $statistiche["totale_vendite"];    ?> </td>
                 <td> <?= $statistiche["numero_transazioni"] ?> </td>
-                <td> <?= $importi_medi[$categoria] ?> </td>
+                <td> <?= $importi_medi[$categoria]          ?> </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
