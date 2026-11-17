@@ -1,4 +1,37 @@
 <?php
+    # --- Funzioni ---
+    function chiave_presente($key_to_find, $array) {
+        foreach (array_keys($array) as $key) {
+            if ($key == $key_to_find) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function genera_report($vendite) {
+        $report = [];
+        foreach ($vendite as $transazione) {
+            if (chiave_presente($transazione["categoria"], $report)) {
+                $report[$transazione["categoria"]]["totale_vendite"] += $transazione["importo"];
+                $report[$transazione["categoria"]]["numero_transazioni"]++;
+            }
+            else {
+                $report[$transazione["categoria"]]["totale_vendite"] = $transazione["importo"];
+                $report[$transazione["categoria"]]["numero_transazioni"] = 1;
+            }
+        }
+        return $report;
+    }
+
+    function calcola_importi_medi($report) {
+        $importi_medi = [];
+        foreach ($report as $categoria => $statistiche) {
+            $importi_medi[$categoria] = $statistiche["totale_vendite"] / $statistiche["numero_transazioni"];
+        }
+        return $importi_medi;
+    }
+
     # Parte 1
     $vendite = [
         ["categoria" => "Elettronica", "prodotto" => "TV 4K", "importo" => 750],
@@ -9,30 +42,11 @@
     ];
 
     # Parte 2
-    $report = [];
-    foreach ($vendite as $transazione) {
-        $chiave_presente = false;
-        foreach ($report as $categoria => $statistiche) {
-            if ($categoria == $transazione["categoria"]) {
-                $chiave_presente = true;
-                break;
-            }
-        }
-        if ($chiave_presente) {
-            $report[$transazione["categoria"]]["totale_vendite"] += $transazione["importo"];
-            $report[$transazione["categoria"]]["numero_transazioni"]++;
-        }
-        else {
-            $report[$transazione["categoria"]]["totale_vendite"] = $transazione["importo"];
-            $report[$transazione["categoria"]]["numero_transazioni"] = 1;
-        }
-    }
+    $report = genera_report($vendite);
 
     # Parte 3
-    $importi_medi = [];
-    foreach ($report as $categoria => $statistiche) {
-        $importi_medi[$categoria] = $statistiche["totale_vendite"] / $statistiche["numero_transazioni"];
-    }
+    $importi_medi = calcola_importi_medi($report);
+
 ?>
 
 <!DOCTYPE html>
